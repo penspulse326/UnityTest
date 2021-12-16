@@ -9,6 +9,7 @@ public class AIController : MonoBehaviour
 
 
   GameObject player;
+  Animator animator;
 
   //起始位置
   Vector3 beginPosition;
@@ -21,28 +22,38 @@ public class AIController : MonoBehaviour
   private void Awake()
   {
     mover = GetComponent<Mover>();
+    animator = GetComponent<Animator>();
     player = GameObject.FindGameObjectWithTag("Player");
     beginPosition = transform.position;
   }
-
+  
   private void Update() {
 
   if(IsInRange())
   {
-    timeLastSawPlayer = 0;
-    //移動
-    mover.MoveTo(player.transform.position, 1 );
+      timeLastSawPlayer = 0;
+      
+      //移動
+       
+      animator.SetBool("IsConfuse", false);
+      mover.MoveTo(player.transform.position, 1);
+      transform.LookAt(player.transform.position); 
+      
   }
   else if(timeLastSawPlayer < confuseTime)
   {
     mover.CancleMove();
     //困惑
+    animator.SetBool("IsConfuse", true);
   }
   else
   {
-    mover.MoveTo(beginPosition,0.5f);
+    //回到原點
+    animator.SetBool("IsConfuse", false);
+    mover.MoveTo(beginPosition,0.2f);
   }
 
+  UpdateTimer();
 
   }
 
