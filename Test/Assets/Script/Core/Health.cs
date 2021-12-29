@@ -51,6 +51,11 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
 
+        if (gameObject.tag == "Player")
+        {
+            print("Player HP:" + currentHealth);
+        }
+
         if(currentHealth > 0)
         {
             onDamage?.Invoke();

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     InputController input;
     CharacterController controller;
     Animator animator;
+    Health health;
 
     //Next Frame 
     Vector3 targetMovement;
@@ -43,6 +44,9 @@ public class PlayerController : MonoBehaviour
         input = GameManagerSingleton.Instance.InputController;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
+
+        health.onDie += OnDie;
     }
 
 
@@ -105,7 +109,6 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("IsJump");
             jumpDirection = Vector3.zero;
             jumpDirection += jumpForce * Vector3.up;
-            
         }
 
         jumpDirection.y -= gravityForce * Time.deltaTime;
@@ -119,6 +122,11 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up , distanceToGround);
+    }
+
+    private void OnDie()
+    {
+        animator.SetTrigger("IsDead");
     }
 
     //取得相機正前方方向

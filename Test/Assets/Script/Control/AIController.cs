@@ -24,6 +24,7 @@ public class AIController : MonoBehaviour
   Animator animator;
   Mover mover;
   Health health;
+  Fighter fighter;
 
   //起始位置
   Vector3 beginPosition;
@@ -41,10 +42,11 @@ public class AIController : MonoBehaviour
     mover = GetComponent<Mover>();
     animator = GetComponent<Animator>();
     health = GetComponent<Health>();
+    fighter = GetComponent<Fighter>();
 
     beginPosition = transform.position;
     health.onDamage += OnDamage;
-    health.onDie += OnDead;
+    health.onDie += OnDie;
   }
   
   private void Update() 
@@ -58,12 +60,7 @@ public class AIController : MonoBehaviour
 
     if(IsInRange())
     {
-        timeLastSawPlayer = 0;
-        //移動      
-        animator.SetBool("IsConfuse", false);
-        mover.MoveTo(player.transform.position, 1);
-         
-        
+        AttackBehavior();
     }
     else if(timeLastSawPlayer < confuseTime)
     {
@@ -76,6 +73,14 @@ public class AIController : MonoBehaviour
 
     UpdateTimer();
   }
+
+    private void AttackBehavior()
+    {
+        timeLastSawPlayer = 0;
+        animator.SetBool("IsConfuse", false);
+        fighter.Attack(player.GetComponent<Health>());
+    }
+
     //巡邏行為
     private void PatrolBehaviour()
     {
@@ -84,7 +89,7 @@ public class AIController : MonoBehaviour
         {
             if(IsAtWayPoint())
             {
-                mover.CancleMove();
+                mover.CancelMove();
                 animator.SetBool("IsConfuse",true);
                 timeSinceArriveWayPoint = 0;
                 currentWayPointIndex = patrol.GetNextWayPointNumber(currentWayPointIndex);
@@ -112,7 +117,7 @@ public class AIController : MonoBehaviour
     //困惑行為
     private void ConfuseBehaviour()
     {
-        mover.CancleMove();  
+        fighter.CancelAttack();
         animator.SetBool("IsConfuse", true);
     }
 
@@ -133,9 +138,9 @@ public class AIController : MonoBehaviour
         //受到攻擊時觸發的行為
     }
 
-    private void OnDead()
+    private void OnDie()
     {
-        mover.CancleMove();
+        mover.CancelMove();
         animator.SetTrigger("IsDead");
     }
 
@@ -143,7 +148,7 @@ public class AIController : MonoBehaviour
     //繪製可視化物件 怪物的巡邏路徑
     private void OnDrawGizmosSelected()
     {   
-           // Gizmos.color = Color.red;
-            //Gizmos.DrawSphere(transform.position, chaseDistance);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
     }
 }

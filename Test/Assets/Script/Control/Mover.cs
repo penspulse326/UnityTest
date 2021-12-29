@@ -36,9 +36,7 @@ public class Mover : MonoBehaviour
     }
 
     public void MoveTo(Vector3 destination , float speedRatio)
-    {
-        //transform.LookAt(destination);
-        
+    {  
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedRatio);
         navMeshAgent.destination = destination;
@@ -46,7 +44,7 @@ public class Mover : MonoBehaviour
         //transform.localRotation = Quaternion.Slerp(transform.localRotation, rotate, 0.1f);
     }
 
-    public void CancleMove()
+    public void CancelMove()
     {
         //停止移動
         navMeshAgent.isStopped = true;
