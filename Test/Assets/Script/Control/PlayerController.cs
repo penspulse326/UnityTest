@@ -26,11 +26,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravityForce = 50;
     [Tooltip("與地面的距離")]
     [SerializeField] float distanceToGround = 0.1f;
-    
+
     InputController input;
     CharacterController controller;
     Animator animator;
     Health health;
+
+    //儲存瞄準狀態
+    bool isAim;
 
     //Next Frame 
     Vector3 targetMovement;
@@ -54,10 +57,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //玩家行為
+        AimBehaviour();
         MoveBehaviour();
         JumpBehaviour();
 
-        Debug.DrawRay(transform.position,-Vector3.up,Color.red);
+        Debug.DrawRay(transform.position, -Vector3.up, Color.red);
+    }
+
+    private void AimBehaviour()
+    {
+        if (input.GetFireInputDown())
+        {
+            isAim = true;
+        }
+        if (input.GetAimInputDown())
+        {
+            isAim = !isAim;
+        }
+
+        animator.SetBool("IsAim", isAim);
     }
 
     //行為處理
@@ -77,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             nextFrameSpeed = 0f;
         }
-        else if (input.GetSprintInput())
+        else if (input.GetSprintInput() && !isAim)
         {
 
             nextFrameSpeed = 1f;
@@ -85,17 +103,24 @@ public class PlayerController : MonoBehaviour
             targetMovement *= sprintSpeedModifier;
             SmoothRotation(targetMovement);
         }
-        else
+        else if (!isAim)
         {
             nextFrameSpeed = 0.5f;
 
             SmoothRotation(targetMovement);
         }
 
-        if(nextFrameSpeed!=lastFrameSpeed)
-            lastFrameSpeed = Mathf.Lerp(lastFrameSpeed,nextFrameSpeed,addSpeedRatio);
+        if (isAim)
+        {
+            SmoothRotation(GetCurrentCameraForward());
+        }
+
+        if (nextFrameSpeed != lastFrameSpeed)
+            lastFrameSpeed = Mathf.Lerp(lastFrameSpeed, nextFrameSpeed, addSpeedRatio);
 
         animator.SetFloat("WalkSpeed", lastFrameSpeed);
+        animator.SetFloat("Vertical",input.GetMoveInput().z);
+        animator.SetFloat("Horizontal", input.GetMoveInput().x);
 
         controller.Move(targetMovement * Time.deltaTime * moveSpeed);
     }
@@ -121,7 +146,7 @@ public class PlayerController : MonoBehaviour
     //檢查是否在地上
     private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up , distanceToGround);
+        return Physics.Raycast(transform.position, -Vector3.up, distanceToGround);
     }
 
     private void OnDie()

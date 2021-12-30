@@ -118,6 +118,7 @@ public class AIController : MonoBehaviour
     private void ConfuseBehaviour()
     {
         fighter.CancelAttack();
+        mover.CancelMove();
         animator.SetBool("IsConfuse", true);
     }
 
