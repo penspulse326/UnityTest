@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     //儲存瞄準狀態
     bool isAim;
 
+    public event Action<bool> onAim;
+
     //Next Frame 
     Vector3 targetMovement;
     Vector3 jumpDirection;
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("IsAim", isAim);
+        onAim?.Invoke(isAim);
     }
 
     //行為處理

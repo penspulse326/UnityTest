@@ -1893,6 +1893,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c23d7dd34e2d29a42bf0998f5f20de59, type: 3}
+--- !u!1 &228865964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6294606430212767879, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+  m_PrefabInstance: {fileID: 6601017989438160379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &228865969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228865964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26a089ec4d599245a30e0e1b8e2b6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingWeapons:
+  - {fileID: 8186768666544285268, guid: 99f98087cf42c1144b9f908a536aeabb, type: 3}
+  - {fileID: -7234892907766226685, guid: a2aaddd8115e84946a061481fc720552, type: 3}
+  - {fileID: 0}
+  equipWeaponParent: {fileID: 987901067}
 --- !u!1 &229097028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1839786891944690, guid: c96016c34e7be62488e588470988ef5b, type: 3}
@@ -8902,6 +8924,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 264414c28ea0fbb41b924fd17d9228b3, type: 3}
+--- !u!4 &987901067 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+  m_PrefabInstance: {fileID: 6601017989438160379}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &991933902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1783979763778466, guid: bd1a894f239d58d4dbf63f27e28096bd, type: 3}
@@ -18418,6 +18445,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9005625
+      objectReference: {fileID: 0}
+    - target: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000028870996
+      objectReference: {fileID: 0}
+    - target: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.43472657
+      objectReference: {fileID: 0}
+    - target: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000059604638
+      objectReference: {fileID: 0}
+    - target: {fileID: 665835584, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 51.536
+      objectReference: {fileID: 0}
     - target: {fileID: 6294606430212767879, guid: 5f9b8eeefe74599478a0ee44d2820b4d, type: 3}
       propertyPath: m_Name
       value: Player

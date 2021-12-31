@@ -106,6 +106,24 @@ public class InputController : MonoBehaviour
         return false;
     }
 
+    //是否切換武器
+    public int GetSwitchWeaponInput(){
+        if(CanProcessInput())
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                return -1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
     public bool CanProcessInput()
     {
         // 如果Cursor狀態不在鎖定中就不能處理Input
