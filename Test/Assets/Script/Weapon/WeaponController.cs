@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +15,16 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject weaponRoot;
     [Header("槍口位置")]
     [SerializeField] Transform weaponMuzzle;
-    
+
     [Space(5)]
     [Header("射擊形式")]
     [SerializeField] WeaponShootType shootType;
+    [Header("Projectile Prefab")]
+    [SerializeField] Projectile projectilePrefab;
     [Header("兩次射擊之間的Delay時間")]
     [SerializeField] float delayBetweenShoots = 0.5f;
-    int bulletPerShoot;
+    [Header("射一發所需的子彈數量")]
+    [SerializeField] int bulletPerShoot;
 
     [Space(5)]
     [Header("每秒Reload的數量")]
@@ -30,7 +34,9 @@ public class WeaponController : MonoBehaviour
     [Header("最大子彈數量")]
     [SerializeField] float maxAmmo = 8;
 
-    public GameObject sourcePrefab {get;set;}
+    [Header("開火特效")]
+    [SerializeField] GameObject muzzleFlashPrefab;
+    public GameObject sourcePrefab { get; set; }
 
     //當前子彈數量
     float currentAmmo;
@@ -39,14 +45,20 @@ public class WeaponController : MonoBehaviour
     //是否在瞄準狀態
     bool isAim;
 
-    private void Awake() {
+    private void Awake()
+    {
         currentAmmo = maxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateAmmo();
+    }
+
+    private void UpdateAmmo()
+    {
+
     }
 
     public void ShowWeapon(bool value)
@@ -54,24 +66,52 @@ public class WeaponController : MonoBehaviour
         weaponRoot.SetActive(value);
     }
 
-    public void HandleShootInput(bool inputDown, bool inputHeld , bool inputUp)
+    public void HandleShootInput(bool inputDown, bool inputHeld, bool inputUp)
     {
         switch (shootType)
         {
             case WeaponShootType.Single:
-            if(inputDown)
-            {
-                print("Single射擊");
-            }
-            return;
+                if (inputDown)
+                {
+                    print("Single射擊");
+                    TryShoot();
+                }
+                return;
 
             case WeaponShootType.Automatic:
                 if (inputHeld)
                 {
                     print("Auto射擊");
+                    TryShoot();
                 }
                 return;
+
             default: return;
         }
+    }
+
+    private void TryShoot()
+    {
+        if (currentAmmo >= 1f && timeSinceLastShoot + delayBetweenShoots < Time.time)
+        {
+            HandleShoot();
+            currentAmmo -= 1;
+        }
+    }
+
+    private void HandleShoot()
+    {
+        for (int i = 0; i < bulletPerShoot; i++)
+        {
+            Projectile newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(weaponMuzzle.forward));
+            newProjectile.Shoot();
+        }
+
+        if (muzzleFlashPrefab!=null)
+        {
+            GameObject newMuzzlePrefab = Instantiate(muzzleFlashPrefab, weaponMuzzle.position, weaponMuzzle.rotation ,weaponMuzzle);
+            Destroy(newMuzzlePrefab,1.5f);
+        }
+        timeSinceLastShoot = Time.time;
     }
 }

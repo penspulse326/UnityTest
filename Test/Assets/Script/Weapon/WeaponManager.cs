@@ -27,8 +27,8 @@ public class WeaponManager : MonoBehaviour
         //初始狀態
         activeWeaponIndex = -1;
 
-        player = GetComponent<PlayerController>();
         input = GameManagerSingleton.Instance.InputController;
+        player = GetComponent<PlayerController>();
         player.onAim += OnAim;
 
         foreach(WeaponController weapon in startingWeapons)

@@ -37,18 +37,21 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\Combat\Fighter.cs" />
+     <Compile Include="Assets\Script\Weapon\WeaponManager.cs" />
      <Compile Include="Assets\Script\Core\Health.cs" />
      <Compile Include="Assets\Script\Control\AIController.cs" />
      <Compile Include="Assets\Script\Core\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\Script\Weapon\WeaponController.cs" />
      <Compile Include="Assets\Script\Control\PlayerController.cs" />
      <Compile Include="Assets\Script\Control\PatrolPath.cs" />
      <Compile Include="Assets\Script\Core\GameManagerSingleton.cs" />
      <Compile Include="Assets\Script\Core\HealthBar.cs" />
      <Compile Include="Assets\Script\Core\CameraSmoothFollow.cs" />
+     <Compile Include="Assets\Script\Weapon\Projectile.cs" />
      <Compile Include="Assets\Script\Control\Mover.cs" />
      <Compile Include="Assets\Script\Control\InputController.cs" />
-     <Compile Include="Assets\Script\Weapon\WeaponController.cs" />
-     <Compile Include="Assets\Script\Weapon\WeaponManager.cs" />
+     <Compile Include="Assets\Script\Weapon\MuzzleRotationToScreenMiddle.cs" />
+     <None Include="Assets\Asset Packages\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2020.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665835583}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.000000028870996, y: 0.43472657, z: 0.000000059604638, w: 0.9005625}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1634123638048682328}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 51.536, z: 0}
 --- !u!1 &4423913373025791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1472,7 @@ GameObject:
   - component: {fileID: 6601017989598208477}
   - component: {fileID: 6601017989598208472}
   - component: {fileID: 6601017989438160381}
+  - component: {fileID: 228865969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1566,6 +1567,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+--- !u!114 &228865969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294606430212767879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26a089ec4d599245a30e0e1b8e2b6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingWeapons:
+  - {fileID: 0}
+  - {fileID: 8186768666544285268, guid: 99f98087cf42c1144b9f908a536aeabb, type: 3}
+  - {fileID: 0}
+  equipWeaponParent: {fileID: 665835584}
 --- !u!1 &6388596522795431777
 GameObject:
   m_ObjectHideFlags: 0
