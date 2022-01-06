@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     private void AimBehaviour()
     {
+        bool lastTimeAim = isAim;
+
         if (input.GetFireInputDown())
         {
             isAim = true;
@@ -77,8 +79,11 @@ public class PlayerController : MonoBehaviour
             isAim = !isAim;
         }
 
+        if (lastTimeAim != isAim)
+        {
+            onAim?.Invoke(isAim);
+        }
         animator.SetBool("IsAim", isAim);
-        onAim?.Invoke(isAim);
     }
 
     //行為處理
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour
             lastFrameSpeed = Mathf.Lerp(lastFrameSpeed, nextFrameSpeed, addSpeedRatio);
 
         animator.SetFloat("WalkSpeed", lastFrameSpeed);
-        animator.SetFloat("Vertical",input.GetMoveInput().z);
+        animator.SetFloat("Vertical", input.GetMoveInput().z);
         animator.SetFloat("Horizontal", input.GetMoveInput().x);
 
         controller.Move(targetMovement * Time.deltaTime * moveSpeed);

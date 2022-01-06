@@ -11,6 +11,9 @@ public class WeaponManager : MonoBehaviour
     [Header("儲存武器的位置")]
     [SerializeField] Transform equipWeaponParent;
 
+    [Header("瞄準的準備時間")]
+    [SerializeField] float aimTime = 2f;
+
     // 目前裝備的武器清單位置
     int activeWeaponIndex;
 
@@ -104,7 +107,21 @@ public class WeaponManager : MonoBehaviour
 
     private void OnAim(bool value)
     {
-        isAim = value;
+        if(value)
+        {
+            StopCoroutine(DelayAim());
+            StartCoroutine(DelayAim());
+        }
+        else
+        {
+            isAim = value;
+        }
+    }
+
+    IEnumerator DelayAim()
+    {
+        yield return new WaitForSecondsRealtime(aimTime);
+        isAim = true;
     }
 
     private WeaponController GetActiveWeapon()

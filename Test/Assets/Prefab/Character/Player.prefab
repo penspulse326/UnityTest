@@ -1472,7 +1472,7 @@ GameObject:
   - component: {fileID: 6601017989598208477}
   - component: {fileID: 6601017989598208472}
   - component: {fileID: 6601017989438160381}
-  - component: {fileID: 228865969}
+  - component: {fileID: 1434267564}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1489,7 +1489,7 @@ Transform:
   m_GameObject: {fileID: 6294606430212767879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.410515, y: 23.941233, z: 31.66888}
-  m_LocalScale: {x: 0.3313, y: 0.3313, z: 0.3313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1820492181300024227}
   - {fileID: 4242527844777618183}
@@ -1507,13 +1507,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.59
+  m_Height: 3.8
   m_Radius: 0.38
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Center: {x: 0, y: 1.9, z: 0}
 --- !u!95 &6601017989598208477
 Animator:
   serializedVersion: 3
@@ -1545,13 +1545,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a166b48975bfcc43aeeaa380affffd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 5
   sprintSpeedModifier: 3
   addSpeedRatio: 0.1
   crouchedSpeedModifier: 0.5
   rotateSpeed: 5
-  jumpForce: 10
-  gravityForce: 35
+  jumpForce: 15
+  gravityForce: 50
   distanceToGround: 0.1
 --- !u!114 &6601017989438160381
 MonoBehaviour:
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
---- !u!114 &228865969
+--- !u!114 &1434267564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1580,9 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingWeapons:
-  - {fileID: 0}
   - {fileID: 8186768666544285268, guid: 99f98087cf42c1144b9f908a536aeabb, type: 3}
-  - {fileID: 0}
   equipWeaponParent: {fileID: 665835584}
 --- !u!1 &6388596522795431777
 GameObject:

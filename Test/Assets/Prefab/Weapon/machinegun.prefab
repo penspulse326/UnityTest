@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 8186768666544285268}
   m_Layer: 0
   m_Name: Machinegun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,5 +264,5 @@ MonoBehaviour:
   bulletPerShoot: 1
   ammoReloadRate: 10
   ammoReloadDelay: 2
-  maxAmmo: 30
+  maxAmmo: 100
   muzzleFlashPrefab: {fileID: 6494618315357031901, guid: f9949bdf9c974ff4db9929ba5fd3d4ab, type: 3}

@@ -13,7 +13,7 @@ public class MuzzleRotationToScreenMiddle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 1.5f, 0));
 
         transform.rotation = Quaternion.LookRotation(ray.GetPoint(maxDistance));
         Debug.DrawLine(transform.position, ray.GetPoint(maxDistance),Color.red);

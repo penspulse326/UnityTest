@@ -40,8 +40,6 @@ public class Mover : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedRatio);
         navMeshAgent.destination = destination;
-        //Quaternion rotate = Quaternion.LookRotation(navMeshAgent.destination);
-        //transform.localRotation = Quaternion.Slerp(transform.localRotation, rotate, 0.1f);
     }
 
     public void CancelMove()
