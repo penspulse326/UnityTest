@@ -16,6 +16,8 @@ public class Fighter : MonoBehaviour
     Animator animator;
     Health health;
     Health targetHealth;
+    AnimatorStateInfo baseLayer;
+
     float timeSinceLastAttack = Mathf.Infinity;
 
     void Start()
@@ -37,12 +39,28 @@ public class Fighter : MonoBehaviour
             AttackBehavior();
         }
 
-        else if (timeSinceLastAttack > timeBetweenAttack)
+        else if (CheckHasAttack() && timeSinceLastAttack > timeBetweenAttack)
         {
             mover.MoveTo(targetHealth.transform.position, 1f);
         }
 
         UpdateTimer();
+    }
+
+    //檢查攻擊動作是否結束
+    private bool CheckHasAttack()
+    {
+        baseLayer = animator.GetCurrentAnimatorStateInfo(0);
+
+        //如果當前動作等於Base Layer.Attack
+        if (baseLayer.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
+        {
+            return false;
+        }  
+        else
+        {
+            return true;
+        }
     }
 
     private void UpdateTimer()
@@ -79,7 +97,7 @@ public class Fighter : MonoBehaviour
 
     private void Hit()
     {
-        if(targetHealth == null) return;
+        if (targetHealth == null) return;
         if (IsInAttackRange())
         {
             targetHealth.TakeDamage(attackDamage);
@@ -101,6 +119,6 @@ public class Fighter : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position+ Vector3.up*2, attackRange);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,14 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] float minDistance = 2;
     [Header("相機與目標最大距離")]
     [SerializeField] float maxDistance = 25;
+
+    [Header("Player的Health")]
+    [SerializeField] GameObject player;
+    [Header("被攻擊的特效")]
+    [SerializeField] ParticleSystem beHitParticle;
+    [Header("加速特效")]
+    [SerializeField] ParticleSystem sprintParticle;
+
     [Header("Offset")]
     [SerializeField] Vector3 offset;
 
@@ -34,6 +43,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Awake()
     {
         input = GameManagerSingleton.Instance.InputController;
+        player.GetComponent<Health>().onDamage += OnDamage;
+        player.GetComponent<PlayerController>().onSprint += OnSprint;
     }
 
     private void LateUpdate()
@@ -53,5 +64,17 @@ public class ThirdPersonCamera : MonoBehaviour
             cameraToTargetDistance += input.GetMouseScrollWheelAxis() * sensibility_Z;
             cameraToTargetDistance = Mathf.Clamp(cameraToTargetDistance,minDistance,maxDistance);
         }
+    }
+
+    private void OnDamage()
+    {
+        if(beHitParticle==null) return;
+        beHitParticle.Play();
+    }
+
+    private void OnSprint()
+    {
+        if(sprintParticle==null) return;
+        sprintParticle.Play();
     }
 }

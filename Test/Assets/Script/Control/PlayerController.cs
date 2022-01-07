@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     bool isAim;
 
     public event Action<bool> onAim;
+    public event Action onSprint;
 
     //Next Frame 
     Vector3 targetMovement;
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
 
             targetMovement *= sprintSpeedModifier;
             SmoothRotation(targetMovement);
+            onSprint?.Invoke();
         }
         else if (!isAim)
         {
