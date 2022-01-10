@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchedSpeedModifier = 0.5f;
     [Tooltip("旋轉速度")]
     [SerializeField] float rotateSpeed = 5f;
+
     [Space(20)]
     [Header("跳躍參數")]
     [Tooltip("向上的力")]
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravityForce = 50;
     [Tooltip("與地面的距離")]
     [SerializeField] float distanceToGround = 0.1f;
+
+    [Space(20)]
+    [Header("準星")]
+    [SerializeField] GameObject crosshair;
 
     InputController input;
     CharacterController controller;
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         health = GetComponent<Health>();
+        crosshair.SetActive(false);
 
         health.onDie += OnDie;
     }
@@ -82,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (lastTimeAim != isAim)
         {
+            if(crosshair!=null) crosshair.SetActive(isAim);
             onAim?.Invoke(isAim);
         }
         animator.SetBool("IsAim", isAim);
