@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5055a3375936b4993cda2101cc7b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponIcon: {fileID: 21300000, guid: 9978cba58f18a6344ab46ed5f59f65a6, type: 3}
   weaponRoot: {fileID: 838921580055131560}
   weaponMuzzle: {fileID: 7883297621991696745}
   shootType: 1

@@ -17,8 +17,20 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        CheckCursorState();
         vertical = Input.GetAxis("Vertical");
         horizontal = Input.GetAxis("Horizontal");
+    }
+
+    void CheckCursorState()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Cursor.lockState == CursorLockMode.None)
+                Cursor.lockState = CursorLockMode.Locked;
+            else
+                Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     //取得Mouse X的Axis

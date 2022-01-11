@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5055a3375936b4993cda2101cc7b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponIcon: {fileID: 21300000, guid: 6602e57f54afe064ebcc19d0235f3e36, type: 3}
   weaponRoot: {fileID: 7113419899895666606}
   weaponMuzzle: {fileID: 2225554634420345724}
   shootType: 1

@@ -31,6 +31,8 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] ParticleSystem beHitParticle;
     [Header("加速特效")]
     [SerializeField] ParticleSystem sprintParticle;
+    [Header("Pause的UI")]
+    [SerializeField] GameObject pauseUI;
 
     [Header("Offset")]
     [SerializeField] Vector3 offset;
@@ -51,30 +53,39 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         if (Cursor.lockState == CursorLockMode.Locked)
         {
+            pauseUI.SetActive(false);
+            Time.timeScale = 1;
+
             mouse_X += input.GetMouseXAxis() * sensibility_X;
             mouse_Y += input.GetMouseYAxis() * sensibility_Y;
 
             //限制Y軸最大角度
-            mouse_Y = Mathf.Clamp(mouse_Y,minVerticalAngle,maxVerticalAngle);
+            mouse_Y = Mathf.Clamp(mouse_Y, minVerticalAngle, maxVerticalAngle);
 
             //保持相機角度與距離
-            transform.rotation = Quaternion.Euler(mouse_Y,mouse_X,0);
-            transform.position = Quaternion.Euler(mouse_Y,mouse_X, 0) * new Vector3(0,0,-cameraToTargetDistance) + target.position + Vector3.up*offset.y;
+            transform.rotation = Quaternion.Euler(mouse_Y, mouse_X, 0);
+            transform.position = Quaternion.Euler(mouse_Y, mouse_X, 0) * new Vector3(0, 0, -cameraToTargetDistance) + target.position + Vector3.up * offset.y;
 
             cameraToTargetDistance += input.GetMouseScrollWheelAxis() * sensibility_Z;
-            cameraToTargetDistance = Mathf.Clamp(cameraToTargetDistance,minDistance,maxDistance);
+            cameraToTargetDistance = Mathf.Clamp(cameraToTargetDistance, minDistance, maxDistance);
+        }
+
+        else
+        {
+            pauseUI.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
     private void OnDamage()
     {
-        if(beHitParticle==null) return;
+        if (beHitParticle == null) return;
         beHitParticle.Play();
     }
 
     private void OnSprint()
     {
-        if(sprintParticle==null) return;
+        if (sprintParticle == null) return;
         sprintParticle.Play();
     }
 }

@@ -14,11 +14,13 @@ public class WeaponManager : MonoBehaviour
     [Header("瞄準的準備時間")]
     [SerializeField] float aimTime = 2f;
 
+    public event Action<WeaponController,int> onAddWeapon;
+
     // 目前裝備的武器清單位置
     int activeWeaponIndex;
 
     //武器最多三個
-    WeaponController[] weapons = new WeaponController[3];
+    WeaponController[] weapons = new WeaponController[4];
     PlayerController player;
     InputController input;
 
@@ -68,7 +70,7 @@ public class WeaponManager : MonoBehaviour
     //切換武器
     private void SwitchWeapon(int addIndex)
     {
-        int newWeaponIndex = -1;
+        int newWeaponIndex = 0;
 
         if (activeWeaponIndex + addIndex > weapons.Length -1)
         {
@@ -124,12 +126,12 @@ public class WeaponManager : MonoBehaviour
         isAim = true;
     }
 
-    private WeaponController GetActiveWeapon()
+    public WeaponController GetActiveWeapon()
     {
         return GetWeaponAtSlotIndex(activeWeaponIndex);
     }
 
-    private WeaponController GetWeaponAtSlotIndex(int index)
+    public WeaponController GetWeaponAtSlotIndex(int index)
     {
         if (index >= 0 && index < weapons.Length - 1 && weapons[index] != null)
         {
@@ -159,6 +161,8 @@ public class WeaponManager : MonoBehaviour
                 weaponInstace.ShowWeapon(false);
 
                 weapons[i] = weaponInstace;
+
+                onAddWeapon?.Invoke(weaponInstace, i);
 
                 return true;
             }

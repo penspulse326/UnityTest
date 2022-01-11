@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\UI\PlayerHealthUI.cs" />
      <Compile Include="Assets\Script\Combat\Fighter.cs" />
      <Compile Include="Assets\Script\Weapon\WeaponManager.cs" />
      <Compile Include="Assets\Script\Core\Health.cs" />
@@ -51,7 +52,7 @@
      <Compile Include="Assets\Script\Control\Mover.cs" />
      <Compile Include="Assets\Script\Weapon\MuzzleRotationToScreenMiddle.cs" />
      <Compile Include="Assets\Script\Control\InputController.cs" />
-     <Compile Include="Assets\Script\UI\PlayerHealthUI.cs" />
+     <Compile Include="Assets\Script\UI\WeaponUI.cs" />
      <None Include="Assets\Asset Packages\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2020.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

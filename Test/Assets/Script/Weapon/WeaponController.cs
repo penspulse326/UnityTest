@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum WeaponShootType
 {
@@ -11,6 +12,9 @@ public enum WeaponShootType
 
 public class WeaponController : MonoBehaviour
 {
+    [Header("武器Icon")]
+    public Sprite weaponIcon;
+
     [Header("武器的主要GameObject 不使用時隱藏")]
     [SerializeField] GameObject weaponRoot;
     [Header("槍口位置")]
@@ -28,7 +32,7 @@ public class WeaponController : MonoBehaviour
 
     [Space(5)]
     [Header("每秒Reload的數量")]
-    [SerializeField] float ammoReloadRate = 1f;
+    [SerializeField] float ammoReloadRate = 5f;
     [Header("射擊完畢到可以Reload的Delay時間")]
     [SerializeField] float ammoReloadDelay = 2f;
     [Header("最大子彈數量")]
@@ -37,6 +41,9 @@ public class WeaponController : MonoBehaviour
     [Header("開火特效")]
     [SerializeField] GameObject muzzleFlashPrefab;
     public GameObject sourcePrefab { get; set; }
+
+    public float currentAmmoRatio { get; private set; }
+    public bool isCooling { get; private set; }
 
     //當前子彈數量
     float currentAmmo;
@@ -58,7 +65,28 @@ public class WeaponController : MonoBehaviour
 
     private void UpdateAmmo()
     {
+        if (timeSinceLastShoot + ammoReloadDelay < Time.time && currentAmmo < maxAmmo)
+        {
+            //當前子彈開始Reload
+            currentAmmo += ammoReloadRate * Time.deltaTime;
 
+            currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
+
+            isCooling = true;
+        }
+        else
+        {
+            isCooling = false;
+        }
+
+        if (maxAmmo == Mathf.Infinity)
+        {
+            currentAmmoRatio = 1f;
+        }
+        else
+        {
+            currentAmmoRatio = currentAmmo / maxAmmo;
+        }
     }
 
     public void ShowWeapon(bool value)
@@ -107,10 +135,10 @@ public class WeaponController : MonoBehaviour
             newProjectile.Shoot();
         }
 
-        if (muzzleFlashPrefab!=null)
+        if (muzzleFlashPrefab != null)
         {
-            GameObject newMuzzlePrefab = Instantiate(muzzleFlashPrefab, weaponMuzzle.position, weaponMuzzle.rotation ,weaponMuzzle);
-            Destroy(newMuzzlePrefab,1.5f);
+            GameObject newMuzzlePrefab = Instantiate(muzzleFlashPrefab, weaponMuzzle.position, weaponMuzzle.rotation, weaponMuzzle);
+            Destroy(newMuzzlePrefab, 1.5f);
         }
         timeSinceLastShoot = Time.time;
     }
