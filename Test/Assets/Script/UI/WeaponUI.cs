@@ -12,10 +12,25 @@ public class WeaponUI : MonoBehaviour
 
     WeaponManager weaponManager;
 
-    void Start()
+    void Awake()
     {
         weaponManager = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponManager>();
         weaponManager.onAddWeapon += OnAddWeapon;
+
+        for (int i = 0; i < 3; i++)
+        {
+                pocket[i].transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+                pocket[i].color = Color.gray;
+                weaponIcon[i].color = Color.gray;
+                energy[i].color = Color.gray;
+        }
+    }
+
+
+    private void OnAddWeapon(WeaponController weapon, int index)
+    {
+        weaponIcon[index].enabled = true;
+        weaponIcon[index].sprite = weapon.weaponIcon;
     }
 
     void Update()
@@ -43,11 +58,5 @@ public class WeaponUI : MonoBehaviour
                 energy[i].color = Color.gray;
             }
         }
-    }
-
-    private void OnAddWeapon(WeaponController weapon, int index)
-    {
-        weaponIcon[index].enabled = true;
-        weaponIcon[index].sprite = weapon.weaponIcon;
     }
 }

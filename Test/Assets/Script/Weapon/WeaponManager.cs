@@ -20,7 +20,7 @@ public class WeaponManager : MonoBehaviour
     int activeWeaponIndex;
 
     //武器最多三個
-    WeaponController[] weapons = new WeaponController[4];
+    WeaponController[] weapons = new WeaponController[3];
     PlayerController player;
     InputController input;
 
@@ -68,7 +68,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     //切換武器
-    private void SwitchWeapon(int addIndex)
+    public void SwitchWeapon(int addIndex)
     {
         int newWeaponIndex = 0;
 
@@ -133,7 +133,7 @@ public class WeaponManager : MonoBehaviour
 
     public WeaponController GetWeaponAtSlotIndex(int index)
     {
-        if (index >= 0 && index < weapons.Length - 1 && weapons[index] != null)
+        if (index >= 0 && index < weapons.Length && weapons[index] != null)
         {
             return weapons[index];
         }

@@ -48,11 +48,13 @@
      <Compile Include="Assets\Script\Core\GameManagerSingleton.cs" />
      <Compile Include="Assets\Script\Core\HealthBar.cs" />
      <Compile Include="Assets\Script\Core\CameraSmoothFollow.cs" />
+     <Compile Include="Assets\Script\UI\WeaponUI.cs" />
      <Compile Include="Assets\Script\Weapon\Projectile.cs" />
      <Compile Include="Assets\Script\Control\Mover.cs" />
      <Compile Include="Assets\Script\Weapon\MuzzleRotationToScreenMiddle.cs" />
      <Compile Include="Assets\Script\Control\InputController.cs" />
-     <Compile Include="Assets\Script\UI\WeaponUI.cs" />
+     <Compile Include="Assets\Script\Pickup\Pickup.cs" />
+     <Compile Include="Assets\Script\Pickup\PickupWeapon.cs" />
      <None Include="Assets\Asset Packages\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\2020.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

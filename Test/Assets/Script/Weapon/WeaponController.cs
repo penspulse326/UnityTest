@@ -54,6 +54,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
+        currentAmmoRatio = 1f;
         currentAmmo = maxAmmo;
     }
 
