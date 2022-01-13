@@ -6,8 +6,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("最大血量")]
-    [SerializeField] private float maxHealth = 10f;
-    [Header("當前血量")] 
+    [SerializeField] private float maxHealth = 100f;
+    [Header("當前血量")]
     [SerializeField] private float currentHealth;
 
     //當受到攻擊時觸發的委派事件
@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;   
+        currentHealth = maxHealth;
     }
 
     public float GetCurrentHealth()
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if(isDead) return;
+        if (isDead) return;
 
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0);
@@ -56,12 +56,12 @@ public class Health : MonoBehaviour
             print("Player HP:" + currentHealth);
         }
 
-        if(currentHealth > 0)
+        if (currentHealth > 0)
         {
             onDamage?.Invoke();
         }
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             HealthDead();
         }
@@ -69,13 +69,19 @@ public class Health : MonoBehaviour
 
     private void HealthDead()
     {
-        if(isDead) return;
+        if (isDead) return;
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             isDead = true;
 
             onDie?.Invoke();
         }
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
     }
 }

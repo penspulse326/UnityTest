@@ -8,6 +8,9 @@ public class PickupWeapon : MonoBehaviour
     [Header("撿起來會得到的武器")]
     [SerializeField] WeaponController weaponPrefab;
 
+    [Header("要Destroy的Pickup Root")]
+    [SerializeField] GameObject pickupRoot;
+
     Pickup pickup;
 
     // Start is called before the first frame update
@@ -31,7 +34,7 @@ public class PickupWeapon : MonoBehaviour
                     weaponManager.SwitchWeapon(1);
                 }
 
-                Destroy(gameObject);
+                Destroy(pickupRoot);
             }
         }
     }
