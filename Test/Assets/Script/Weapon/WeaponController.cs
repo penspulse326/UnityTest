@@ -133,7 +133,7 @@ public class WeaponController : MonoBehaviour
         for (int i = 0; i < bulletPerShoot; i++)
         {
             Projectile newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(weaponMuzzle.forward));
-            newProjectile.Shoot();
+            newProjectile.Shoot(GameObject.FindGameObjectWithTag("Player"));
         }
 
         if (muzzleFlashPrefab != null)

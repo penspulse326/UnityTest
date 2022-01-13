@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 838921580055619976}
   - component: {fileID: -7234892907766226685}
   m_Layer: 0
-  m_Name: FlamethrowerHandle
+  m_Name: flamethrowerHandle
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,3 +269,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5000
+  offset_Y: 20

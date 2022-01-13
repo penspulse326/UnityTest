@@ -3,8 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Actor
+{
+    //近戰
+    Melee,
+    //遠程
+    Archer,
+    //殭屍
+    Zombie,
+}
+
 public class Fighter : MonoBehaviour
 {
+    [Header("角色攻擊類型")]
+    [SerializeField] Actor actorType;
     [Header("攻擊傷害")]
     [SerializeField] float attackDamage = 10f;
     [Header("攻擊距離")]
@@ -12,6 +24,13 @@ public class Fighter : MonoBehaviour
     [Header("攻擊時間間隔")]
     [SerializeField] float timeBetweenAttack = 2f;
 
+    [Space(20)]
+    [Header("要丟出去的Projectile")]
+    [SerializeField] Projectile throwProjectile;
+    [Header("手部座標")]
+    [SerializeField] Transform hand;
+
+    GameObject player;
     Mover mover;
     Animator animator;
     Health health;
@@ -22,6 +41,7 @@ public class Fighter : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         mover = GetComponent<Mover>();
         animator = GetComponent<Animator>();
         health = GetComponent<Health>();
@@ -56,7 +76,7 @@ public class Fighter : MonoBehaviour
         if (baseLayer.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
         {
             return false;
-        }  
+        }
         else
         {
             return true;
@@ -97,10 +117,21 @@ public class Fighter : MonoBehaviour
 
     private void Hit()
     {
-        if (targetHealth == null) return;
+        if (targetHealth == null || actorType != Actor.Melee) return;
         if (IsInAttackRange())
         {
             targetHealth.TakeDamage(attackDamage);
+        }
+    }
+
+    private void Shoot()
+    {
+        if (targetHealth == null || actorType != Actor.Archer) return;
+        if (throwProjectile != null)
+        {
+            Projectile newProjectile = Instantiate(throwProjectile, hand.position, Quaternion.LookRotation(player.transform.position + Vector3.up * 3
+- hand.position));
+            newProjectile.Shoot(gameObject);
         }
     }
 
@@ -119,6 +150,6 @@ public class Fighter : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position+ Vector3.up*2, attackRange);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * 2, attackRange);
     }
 }

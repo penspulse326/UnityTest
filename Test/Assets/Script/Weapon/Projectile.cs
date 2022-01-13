@@ -27,6 +27,9 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] float damage = 40f;
 
+    GameObject owner;
+    bool canAttack;
+
     //當前速度
     Vector3 currentVelocity;
 
@@ -48,9 +51,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Weapon" || other.gameObject.tag == "Player") return;
+        if (other.gameObject == owner || !canAttack) return;
 
-        if (other.gameObject.tag == "Enemy" && type == ProjectileType.Collider)
+        if ((other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player") && type == ProjectileType.Collider)
         {
             Health targetHealth = other.gameObject.GetComponent<Health>();
             if (!targetHealth.IsDead())
@@ -63,10 +66,11 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnParticleCollision(GameObject other) {
-        if (other.gameObject.tag == "Weapon" || other.gameObject.tag == "Player") return;
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other == owner || !canAttack) return;
 
-        if (other.gameObject.tag == "Enemy" && type == ProjectileType.Particle)
+        if ((other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player") && type == ProjectileType.Particle)
         {
             Health targetHealth = other.gameObject.GetComponent<Health>();
             if (!targetHealth.IsDead())
@@ -76,6 +80,7 @@ public class Projectile : MonoBehaviour
         }
 
         HitEffect(transform.position);
+        Destroy(gameObject);
     }
 
     private void HitEffect(Vector3 hitPoint)
@@ -90,9 +95,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void Shoot()
+    public void Shoot(GameObject gameObject)
     {
+        owner = gameObject;
         currentVelocity = transform.forward * projectileSpeed;
+        canAttack = true;
     }
 
 }

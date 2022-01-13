@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5000
+  offset_Y: 20
 --- !u!1 &7113419899895666602
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +222,7 @@ GameObject:
   - component: {fileID: 7113419899895958414}
   - component: {fileID: 8186768666544285268}
   m_Layer: 0
-  m_Name: Machinegun
+  m_Name: machinegun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
