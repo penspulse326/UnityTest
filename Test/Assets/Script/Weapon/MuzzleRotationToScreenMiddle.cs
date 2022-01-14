@@ -10,7 +10,7 @@ public class MuzzleRotationToScreenMiddle : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    [SerializeField] float offset_Y = 10f;
+    [SerializeField] float offset_Y = 30f;
 
     // Update is called once per frame
     void Update()

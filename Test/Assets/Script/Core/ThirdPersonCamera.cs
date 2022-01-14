@@ -34,27 +34,38 @@ public class ThirdPersonCamera : MonoBehaviour
     [Header("Pause的UI")]
     [SerializeField] GameObject pauseUI;
 
+    [Header("Pause的音效")]
+    [SerializeField] AudioClip pauseSFX;
+
+
     [Header("Offset")]
     [SerializeField] Vector3 offset;
 
     float mouse_X = 0;
     float mouse_Y = 30;
+    bool isChange = false;
 
     InputController input;
+    AudioSource audioSource;
 
     private void Awake()
     {
         input = GameManagerSingleton.Instance.InputController;
         player.GetComponent<Health>().onDamage += OnDamage;
         player.GetComponent<PlayerController>().onSprint += OnSprint;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void LateUpdate()
     {
+        bool isLocked = false;
+
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             pauseUI.SetActive(false);
             Time.timeScale = 1;
+
+            isLocked = false;
 
             mouse_X += input.GetMouseXAxis() * sensibility_X;
             mouse_Y += input.GetMouseYAxis() * sensibility_Y;
@@ -74,6 +85,14 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             pauseUI.SetActive(true);
             Time.timeScale = 0;
+
+            isLocked = true;
+        }
+
+        if (isLocked != isChange)
+        {
+            audioSource.PlayOneShot(pauseSFX);
+            isChange = isLocked; 
         }
     }
 

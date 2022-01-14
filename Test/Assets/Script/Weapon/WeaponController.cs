@@ -38,12 +38,19 @@ public class WeaponController : MonoBehaviour
     [Header("最大子彈數量")]
     [SerializeField] float maxAmmo = 8;
 
+    [Space(5)]
     [Header("開火特效")]
     [SerializeField] GameObject muzzleFlashPrefab;
-    public GameObject sourcePrefab { get; set; }
+    [Header("Shoot音效")]
+    [SerializeField] AudioClip shootSFX;
+    [Header("切換音效")]
+    [SerializeField] AudioClip changeWeaponSFX;
 
+    public GameObject sourcePrefab { get; set; }
     public float currentAmmoRatio { get; private set; }
     public bool isCooling { get; private set; }
+
+    AudioSource audioSource;
 
     //當前子彈數量
     float currentAmmo;
@@ -56,6 +63,7 @@ public class WeaponController : MonoBehaviour
     {
         currentAmmoRatio = 1f;
         currentAmmo = maxAmmo;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -93,6 +101,11 @@ public class WeaponController : MonoBehaviour
     public void ShowWeapon(bool value)
     {
         weaponRoot.SetActive(value);
+
+        if (value && audioSource)
+        {
+            audioSource.PlayOneShot(changeWeaponSFX);
+        }
     }
 
     public void HandleShootInput(bool inputDown, bool inputHeld, bool inputUp)
@@ -141,6 +154,12 @@ public class WeaponController : MonoBehaviour
             GameObject newMuzzlePrefab = Instantiate(muzzleFlashPrefab, weaponMuzzle.position, weaponMuzzle.rotation, weaponMuzzle);
             Destroy(newMuzzlePrefab, 1.5f);
         }
+
+        if (shootSFX != null)
+        {
+            audioSource.PlayOneShot(shootSFX);
+        }
+
         timeSinceLastShoot = Time.time;
     }
 }

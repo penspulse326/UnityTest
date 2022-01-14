@@ -24,9 +24,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] float maxLifeTime = 3f;
     [Header("重力(影響子彈末端下降的力量)")]
     [SerializeField] float gravityDownForce = 0f;
-
+    [Header("Projectile的傷害")]
     [SerializeField] float damage = 40f;
 
+    [Space(5)]
+    [Header("Destroy音效")]
+    [SerializeField] AudioClip detroySFX;
+
+    AudioSource audioSource;
     GameObject owner;
     bool canAttack;
 
@@ -36,6 +41,7 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
         Destroy(gameObject, maxLifeTime);
     }
 
@@ -81,6 +87,11 @@ public class Projectile : MonoBehaviour
 
         HitEffect(transform.position);
         Destroy(gameObject);
+        
+        if (detroySFX != null)
+        {
+            audioSource.PlayOneShot(detroySFX);
+        }
     }
 
     private void HitEffect(Vector3 hitPoint)
