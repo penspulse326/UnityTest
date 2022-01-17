@@ -575,9 +575,13 @@ GameObject:
   - component: {fileID: 490378408694556554}
   - component: {fileID: 1130993558350767060}
   - component: {fileID: 3191531073228981600}
+  - component: {fileID: 419425033799761104}
+  - component: {fileID: 2363208305571650233}
+  - component: {fileID: 2565860808201734864}
+  - component: {fileID: 1962451275398889447}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -591,7 +595,7 @@ Transform:
   m_GameObject: {fileID: 4655662032990953313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 174131427560388488}
   - {fileID: 6150788751806880221}
@@ -642,7 +646,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -684,6 +688,73 @@ MonoBehaviour:
   rootCanvas: {fileID: 5198010458934800991}
   foreground: {fileID: 5198010458090954047}
   changeHealthRatio: 0.1
+--- !u!114 &419425033799761104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655662032990953313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6073ee9319bc597488cfdc8e7e89a7af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 25
+  confuseTime: 5
+  patrol: {fileID: 0}
+  waypointToWaitTime: 3
+  wayPointToStay: 3
+  patrolSpeedRatio: 0.5
+--- !u!114 &2363208305571650233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655662032990953313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03d49ccb309bb942b38c4c09841de18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actorType: 3
+  attackDamage: 10
+  jumpAttackDamage: 20
+  attackRange: 10
+  jumpAttackRange: 15
+  timeBetweenAttack: 3
+  throwProjectile: {fileID: 0}
+  hand: {fileID: 0}
+--- !u!114 &2565860808201734864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655662032990953313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8192746d5dfc747b992c58d20b09e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 6
+--- !u!54 &1962451275398889447
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655662032990953313}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4656710850912933087
 GameObject:
   m_ObjectHideFlags: 0

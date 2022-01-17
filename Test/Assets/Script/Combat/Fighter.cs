@@ -11,6 +11,8 @@ public enum Actor
     Archer,
     //殭屍
     Zombie,
+    //魔王
+    Boss,
 }
 
 public class Fighter : MonoBehaviour
