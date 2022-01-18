@@ -199,7 +199,8 @@ MonoBehaviour:
   projectileSpeed: 100
   maxLifeTime: 3
   gravityDownForce: 5
-  damage: 25
+  damage: 10
+  detroySFX: {fileID: 0}
 --- !u!136 &9155919625196961103
 CapsuleCollider:
   m_ObjectHideFlags: 0

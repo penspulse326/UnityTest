@@ -115,7 +115,6 @@ public class WeaponController : MonoBehaviour
             case WeaponShootType.Single:
                 if (inputDown)
                 {
-                    print("Single射擊");
                     TryShoot();
                 }
                 return;
@@ -123,7 +122,6 @@ public class WeaponController : MonoBehaviour
             case WeaponShootType.Automatic:
                 if (inputHeld)
                 {
-                    print("Auto射擊");
                     TryShoot();
                 }
                 return;

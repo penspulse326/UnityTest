@@ -4839,7 +4839,7 @@ MonoBehaviour:
   projectileSpeed: 20
   maxLifeTime: 3
   gravityDownForce: 5
-  damage: 5
+  damage: 15
   detroySFX: {fileID: 0}
 --- !u!82 &191379419273890835
 AudioSource:

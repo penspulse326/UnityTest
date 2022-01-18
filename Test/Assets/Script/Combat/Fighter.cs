@@ -18,7 +18,7 @@ public enum Actor
 public class Fighter : MonoBehaviour
 {
     [Header("角色攻擊類型")]
-    [SerializeField] Actor actorType;
+    [SerializeField] public Actor actorType;
     [Header("攻擊傷害")]
     [SerializeField] float attackDamage = 10f;
     [Header("攻擊距離")]
@@ -119,7 +119,7 @@ public class Fighter : MonoBehaviour
 
     private void Hit()
     {
-        if (targetHealth == null || actorType != Actor.Melee) return;
+        if (targetHealth == null || actorType != Actor.Melee && actorType != Actor.Zombie) return;
         if (IsInAttackRange())
         {
             targetHealth.TakeDamage(attackDamage);
@@ -131,8 +131,7 @@ public class Fighter : MonoBehaviour
         if (targetHealth == null || actorType != Actor.Archer) return;
         if (throwProjectile != null)
         {
-            Projectile newProjectile = Instantiate(throwProjectile, hand.position, Quaternion.LookRotation(player.transform.position + Vector3.up * 3
-- hand.position));
+            Projectile newProjectile = Instantiate(throwProjectile, hand.position, Quaternion.LookRotation(player.transform.position + Vector3.up * 3- hand.position));
             newProjectile.Shoot(gameObject);
         }
     }

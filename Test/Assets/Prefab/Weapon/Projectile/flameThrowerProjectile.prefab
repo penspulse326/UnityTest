@@ -601,7 +601,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 300
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 300
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -967,7 +967,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 100
+        scalar: 250
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -4813,6 +4813,7 @@ MonoBehaviour:
   hitParticle: {fileID: 0}
   particleLifeTime: 0.5
   projectileSpeed: 0
-  maxLifeTime: 1
+  maxLifeTime: 1.5
   gravityDownForce: 0
-  damage: 5
+  damage: 7.5
+  detroySFX: {fileID: 0}

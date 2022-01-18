@@ -34,6 +34,7 @@ public class RootAIController : MonoBehaviour
     //距離上次抵達Waypoint的時間
     float timeSinceArriveWayPoint = 0;
 
+    bool isBeHit;
 
     private void Awake()
     {
@@ -50,14 +51,9 @@ public class RootAIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            health.TakeDamage(10);
-        }
-
         if (health.IsDead()) return;
 
-        if (IsInRange())
+        if (IsInRange() || isBeHit)
         {
             AttackBehavior();
         }
@@ -136,6 +132,7 @@ public class RootAIController : MonoBehaviour
     private void OnDamage()
     {
         //受到攻擊時觸發的行為
+        isBeHit = true;
     }
 
     private void OnDie()

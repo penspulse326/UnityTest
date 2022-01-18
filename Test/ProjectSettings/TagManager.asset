@@ -6,14 +6,15 @@ TagManager:
   tags:
   - Weapon
   - Enemy
+  - Test
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Character
   - Water
   - UI
-  - 
+  - MiniMap
   - 
   - 
   - 

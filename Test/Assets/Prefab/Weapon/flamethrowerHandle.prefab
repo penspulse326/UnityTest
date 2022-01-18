@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 838921580055619976}
   - component: {fileID: -7234892907766226685}
   - component: {fileID: -4777319146765707976}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: flamethrowerHandle
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -52,13 +52,13 @@ MonoBehaviour:
   weaponMuzzle: {fileID: 7883297621991696745}
   shootType: 1
   projectilePrefab: {fileID: 163366954491807373, guid: 78882a6e731078442be88a4d9812cb8d, type: 3}
-  delayBetweenShoots: 0.2
+  delayBetweenShoots: 0.1
   bulletPerShoot: 1
   ammoReloadRate: 1
   ammoReloadDelay: 2
   maxAmmo: 100
   muzzleFlashPrefab: {fileID: 0}
-  shootSFX: {fileID: 8300000, guid: 4f1ad1a2a4d33484db06895ac4295c80, type: 3}
+  shootSFX: {fileID: 8300000, guid: 733a0ff7727334749a0381b7092162b3, type: 3}
   changeWeaponSFX: {fileID: 8300000, guid: d73b73743ea434d9b98c5c0b04b51e3a, type: 3}
 --- !u!82 &-4777319146765707976
 AudioSource:
@@ -72,7 +72,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 838921580055619978}
   - component: {fileID: 838921580056390056}
   - component: {fileID: 838921580057389928}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh1_Group2_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 838921580055619980}
   - component: {fileID: 838921580056390058}
   - component: {fileID: 838921580057389930}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh2_Group3_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7883297621991696745}
   - component: {fileID: 5782107363351091584}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
