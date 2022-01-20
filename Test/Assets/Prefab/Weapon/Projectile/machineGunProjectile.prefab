@@ -198,7 +198,7 @@ MonoBehaviour:
   particleLifeTime: 2
   projectileSpeed: 100
   maxLifeTime: 3
-  gravityDownForce: 5
+  gravityDownForce: 3
   damage: 10
   detroySFX: {fileID: 0}
 --- !u!136 &9155919625196961103

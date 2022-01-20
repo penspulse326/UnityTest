@@ -10,12 +10,12 @@ public class MuzzleRotationToScreenMiddle : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-    [SerializeField] float offset_Y = 30f;
+    [SerializeField] float offset_Y = 100f;
 
     // Update is called once per frame
     void Update()
     {
-        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2 + offset_Y, 0));
+        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 1.75f, 0));
 
         transform.rotation = Quaternion.LookRotation(ray.GetPoint(maxDistance));
         Debug.DrawLine(transform.position, ray.GetPoint(maxDistance),Color.red);

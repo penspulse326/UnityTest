@@ -18,12 +18,17 @@ public class RootAIController : MonoBehaviour
     [Header("巡邏時的速度")]
     [Range(0, 1)]
     [SerializeField] float patrolSpeedRatio = 0.5f;
+    
+    [Space(20)]
+    [Header("音效")]
+    [SerializeField] AudioClip roaring;
 
     GameObject player;
     Animator animator;
     RootMover mover;
     Health health;
     RootFighter fighter;
+    AudioSource audioSource;
 
     //起始位置
     Vector3 beginPosition;
@@ -43,6 +48,7 @@ public class RootAIController : MonoBehaviour
         animator = GetComponent<Animator>();
         health = GetComponent<Health>();
         fighter = GetComponent<RootFighter>();
+        audioSource = GetComponent<AudioSource>();
 
         beginPosition = transform.position;
         health.onDamage += OnDamage;
@@ -129,6 +135,11 @@ public class RootAIController : MonoBehaviour
         timeSinceArriveWayPoint += Time.deltaTime;
     }
 
+    public void Roaring()
+    {
+        audioSource.PlayOneShot(roaring);
+    }
+
     private void OnDamage()
     {
         //受到攻擊時觸發的行為
@@ -139,6 +150,8 @@ public class RootAIController : MonoBehaviour
     {
         mover.CancelMove();
         animator.SetTrigger("IsDead");
+        mover.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     //call by Unity

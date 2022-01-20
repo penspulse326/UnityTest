@@ -139,6 +139,8 @@ public class AIController : MonoBehaviour
     {
         mover.CancelMove();
         animator.SetTrigger("IsDead");
+        mover.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     //call by Unity
