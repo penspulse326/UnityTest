@@ -21,7 +21,8 @@ public class RootAIController : MonoBehaviour
     
     [Space(20)]
     [Header("音效")]
-    [SerializeField] AudioClip roaring;
+    [SerializeField] AudioClip roaringSFX;
+    [SerializeField] AudioClip deadSFX;
 
     GameObject player;
     Animator animator;
@@ -137,7 +138,7 @@ public class RootAIController : MonoBehaviour
 
     public void Roaring()
     {
-        audioSource.PlayOneShot(roaring);
+        audioSource.PlayOneShot(roaringSFX);
     }
 
     private void OnDamage()
@@ -148,6 +149,7 @@ public class RootAIController : MonoBehaviour
 
     private void OnDie()
     {
+        audioSource.PlayOneShot(deadSFX);
         mover.CancelMove();
         animator.SetTrigger("IsDead");
         mover.enabled = false;

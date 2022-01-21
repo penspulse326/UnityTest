@@ -20,11 +20,17 @@ public class AIController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float patrolSpeedRatio = 0.5f;
 
+    [Space(20)]
+    [Header("音效")]
+    [SerializeField] AudioClip roaringSFX;
+    [SerializeField] AudioClip deadSFX;
+
     GameObject player;
     Animator animator;
     Mover mover;
     Health health;
     Fighter fighter;
+    AudioSource audioSource;
 
     //起始位置
     Vector3 beginPosition;
@@ -44,6 +50,7 @@ public class AIController : MonoBehaviour
         animator = GetComponent<Animator>();
         health = GetComponent<Health>();
         fighter = GetComponent<Fighter>();
+        audioSource = GetComponent<AudioSource>();
 
         beginPosition = transform.position;
         health.onDamage += OnDamage;
@@ -130,6 +137,12 @@ public class AIController : MonoBehaviour
         timeSinceArriveWayPoint += Time.deltaTime;
     }
 
+    public void Roaring()
+    {
+        audioSource.PlayOneShot(roaringSFX);
+    }
+
+
     private void OnDamage()
     {
         isBeHit = true;
@@ -137,6 +150,7 @@ public class AIController : MonoBehaviour
 
     private void OnDie()
     {
+        audioSource.PlayOneShot(deadSFX);
         mover.CancelMove();
         animator.SetTrigger("IsDead");
         mover.enabled = false;

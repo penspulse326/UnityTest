@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     [Header("準星")]
     [SerializeField] GameObject crosshair;
 
+    [Space(20)]
+    [Header("音效")]
+    [SerializeField] AudioClip walkSFX;
+    [SerializeField] AudioClip beHitSFX;
+    [SerializeField] AudioClip deadSFX;
+
     InputController input;
     CharacterController controller;
     Animator animator;
